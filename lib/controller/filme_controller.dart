@@ -18,7 +18,15 @@ class FilmeController {
     print(filmes);
   }
 
-  void insertInto(Filme f) {
-    _filmesRepository.insertInto(f);
+  void insert(Filme f) {
+    _filmesRepository.insert(f);
+  }
+
+  void update(Filme f, String id) {
+    _filmesRepository.update(f, id);
+  }
+
+  void delete(String id) {
+    _filmesRepository.delete(id);
   }
 }

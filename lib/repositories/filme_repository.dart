@@ -23,12 +23,36 @@ class FilmeRepository {
     return Filme.fromMap(filmeMap);
   }
 
-  insertInto(Filme f) async {
-    // não funcionou = Erro 404
-    final filmeResponse = await http.put(
+  insert(Filme f) async {
+    final filmeResponse = await http.post(
       Uri.parse("http://localhost:3031/filmes"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
       body: f.toJson(),
-      headers: {'Content-type': 'application/json'},
+    );
+    print(filmeResponse.statusCode);
+  }
+
+  update(Filme f, String id) async {
+    //93486260-1986-11ed-94e4-f5320c569855
+    final filmeResponse = await http.put(
+      Uri.parse("http://localhost:3031/filmes/$id"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: f.toJson(),
+    );
+    print(filmeResponse.statusCode);
+  }
+
+  delete(String id) async {
+    //93486260-1986-11ed-94e4-f5320c569855
+    final filmeResponse = await http.delete(
+      Uri.parse("http://localhost:3031/filmes/$id"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
     );
     print(filmeResponse.statusCode);
   }
